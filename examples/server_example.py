@@ -87,5 +87,5 @@ async def _update_metadata(user_id: int):
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
 
-    # Now if you run this code and navigate to https://yoursite/linked-role you will be redirected to Discord
-    # authorisation page. After confirmation, you will receive token and then redirected to `REDIRECT_URL`.
+    # Now if you run this code and navigate to https://yourwebsite/linked-role you will be redirected to Discord
+    # authorization page. After confirmation, you will receive token and then redirected to `REDIRECT_URL`.
