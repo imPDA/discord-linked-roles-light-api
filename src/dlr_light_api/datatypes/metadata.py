@@ -77,7 +77,7 @@ class MetadataField:
 
     def to_dict(self):
         return {
-            'type': self._type,
+            'type': self._type.value,
             'key': self._key,
             'name': self._name,
             'description': self._description,
