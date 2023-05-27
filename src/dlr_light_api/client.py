@@ -101,7 +101,7 @@ class DLRLightAPI:
             'Content-Type': 'application/json',
         }
 
-        await self._request('PUT', URL, headers, data=metadata.to_dict())
+        await self._request('PUT', URL, headers, data=json.dumps(metadata.to_dict()))  # noqa
 
     async def get_metadata(self, token: DiscordToken) -> dict:
         URL = f'https://discord.com/api/v10/users/@me/applications/{self.client_id}/role-connection'
