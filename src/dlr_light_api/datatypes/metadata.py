@@ -207,12 +207,11 @@ class Metadata(metaclass=MetadataBase):
             super().__setattr__(key, value)
 
     def to_dict(self):
-        output = {'platform_name': self.platform_name}
-        output.update({v.key: v.value for v in self.__dict__.values() if isinstance(v, MetadataField)})
-        if self.platform_nickname:
-            output.update({'platform_nickname': self.platform_nickname})
-
-        return output
+        return {
+            'platform_name': metadata.platform_name,
+            'platform_nickname': metadata.platform_nickname,
+            'metadata': {v.key: v.value for v in self.__dict__.values() if isinstance(v, MetadataField)}
+        }
 
     @classmethod
     def to_schema(cls):

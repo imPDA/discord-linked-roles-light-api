@@ -5,7 +5,7 @@ from urllib.parse import urlencode
 import aiohttp
 import json
 
-from .datatypes import DiscordToken, Metadata
+from .datatypes import DiscordToken, Metadata, MetadataField
 
 
 class DLRLightAPI:
@@ -93,7 +93,7 @@ class DLRLightAPI:
 
         return await self._request('GET', URL, headers)
 
-    async def push_metadata(self, token: DiscordToken, data: dict) -> None:
+    async def push_metadata(self, token: DiscordToken, metadata: Metadata) -> None:
         URL = f'https://discord.com/api/v10/users/@me/applications/{self.client_id}/role-connection'
 
         headers = {
@@ -101,7 +101,7 @@ class DLRLightAPI:
             'Content-Type': 'application/json',
         }
 
-        await self._request('PUT', URL, headers, data=data)
+        await self._request('PUT', URL, headers, data=metadata.to_dict())
 
     async def get_metadata(self, token: DiscordToken) -> dict:
         URL = f'https://discord.com/api/v10/users/@me/applications/{self.client_id}/role-connection'
