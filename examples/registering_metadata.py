@@ -3,7 +3,7 @@ import os
 from dlr_light_api import Client
 
 # Let's use metadata from first example and register it.
-from creating_metadata import ShikimoriMetadata
+from work_with_metadata import ShikiMetadata
 
 
 if __name__ == '__main__':
@@ -17,6 +17,6 @@ if __name__ == '__main__':
     )
 
     # 2) Register the schema.
-    print("Registering the schema:", ShikimoriMetadata.to_schema())
-    client.register_metadata_schema(ShikimoriMetadata)
+    print("Registering the schema:", ShikiMetadata.to_schema())
+    client.register_metadata_schema(ShikiMetadata)
     print("Done!")
