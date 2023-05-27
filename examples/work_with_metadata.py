@@ -11,17 +11,17 @@ if __name__ == '__main__':
     print('Schema:', ShikiMetadata.to_schema())
 
     # ✔️ metadata can be provided as a dict
-    a = ShikiMetadata({'total_titles': 1, 'total_hours': 11, 'platform_nickname': 'qwerty'})
+    a = ShikiMetadata({'total_titles': 1, 'total_hours': 11, 'platform_username': 'qwerty'})
     assert a.total_titles.value == 1
     assert a.total_hours.value == 11
-    assert a.platform_nickname == 'qwerty'
+    assert a.platform_username == 'qwerty'
     print(a.to_dict())
 
     # ✔️ metadata can be provided as a k/w arguments
     b = ShikiMetadata(total_titles=2)
     assert b.total_titles.value == 2
     assert b.total_hours.value is None
-    assert b.platform_nickname is None
+    assert b.platform_username is None
 
     # ✔️ metadata can be set directly, and it will be automatically converted into MetadataField
     c = ShikiMetadata()

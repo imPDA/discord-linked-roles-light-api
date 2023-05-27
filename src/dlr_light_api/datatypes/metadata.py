@@ -128,7 +128,7 @@ class MetadataField:
 
 class MetadataBase(type):
     platform_name: str = None
-    platform_nickname: str = None
+    platform_username: str = None
 
     def __new__(cls, clsname, superclasses, attributedict):
         parents = [s for s in superclasses if isinstance(s, MetadataBase)]
@@ -172,15 +172,15 @@ class MetadataBase(type):
 class Metadata(metaclass=MetadataBase):
     def __init__(self, args: dict = None, /, **kwargs):
         self.platform_name: str | None
-        self.platform_nickname: str | None
+        self.platform_username: str | None
 
         custom_fields = [k for k in dir(self) if isinstance(getattr(self, k), MetadataField)]
         for f in custom_fields:
             self.__dict__[f] = getattr(self, f)()
 
-        if 'platform_nickname' not in dir(self):
-            self.platform_nickname = None
-        custom_fields.append('platform_nickname')
+        if 'platform_username' not in dir(self):
+            self.platform_username = None
+        custom_fields.append('platform_username')
 
         if args and kwargs:
             raise ValueError('Only args OR kwargs can be provided at the same time')
@@ -208,8 +208,8 @@ class Metadata(metaclass=MetadataBase):
 
     def to_dict(self):
         return {
-            'platform_name': metadata.platform_name,
-            'platform_nickname': metadata.platform_nickname,
+            'platform_name': self.platform_name,
+            'platform_username': self.platform_username,
             'metadata': {v.key: v.value for v in self.__dict__.values() if isinstance(v, MetadataField)}
         }
 
