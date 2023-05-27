@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from urllib.parse import urlencode
 
 import aiohttp
+import json
 
 from .datatypes import DiscordToken, Metadata
 
@@ -111,7 +112,7 @@ class DLRLightAPI:
 
         return await self._request('GET', URL, headers)
 
-    async def register_metadata_schema(self, metadata: Metadata):
+    async def register_metadata_schema(self, metadata: Metadata) -> dict:
         URL = f'https://discord.com/api/v10/applications/{self.client_id}/role-connections/metadata'
 
         headers = {
@@ -119,7 +120,7 @@ class DLRLightAPI:
             'Authorization': f'Bot {self.discord_token}',
         }
 
-        return await self._request('PUT', URL, headers, metadata.to_schema())  # noqa
+        return await self._request('PUT', URL, headers, data=json.dumps(metadata.to_schema()))  # noqa
 
 
 Client = DLRLightAPI
