@@ -11,7 +11,7 @@ packages = [
 
 setup(
     name='discord-linked-roles-light-api',
-    version='dev',
+    version='v0.1.dev1',
 
     url='https://github.com/imPDA/discord-linked-roles-light-api',
     author='imPDA',
