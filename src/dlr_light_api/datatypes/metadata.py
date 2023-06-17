@@ -210,10 +210,12 @@ class Metadata(metaclass=MetadataBase):
         output = {
             'platform_name': self.platform_name,
             'platform_username': self.platform_username,
-            'metadata': {v.key: v.value for v in self.__dict__.values() if isinstance(v, MetadataField)}
+            'metadata': {
+                v.key: v.value for v in self.__dict__.values() if isinstance(v, MetadataField) and v.value is not None
+            }  # null is not permitted in discord metadata, so we check if v.value is not none
         }
 
-        return {k: v for k, v in output.items() if v is not None}  # null is not available at discord metadata
+        return {k: v for k, v in output.items() if v is not None}  # null is not permitted in discord metadata
 
     @classmethod
     def to_schema(cls):
