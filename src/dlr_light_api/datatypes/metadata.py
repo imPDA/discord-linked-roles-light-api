@@ -207,11 +207,13 @@ class Metadata(metaclass=MetadataBase):
             super().__setattr__(key, value)
 
     def to_dict(self):
-        return {
+        output = {
             'platform_name': self.platform_name,
             'platform_username': self.platform_username,
             'metadata': {v.key: v.value for v in self.__dict__.values() if isinstance(v, MetadataField)}
         }
+
+        return {k: v for k, v in output.items() if v is not None}  # null is not available at discord metadata
 
     @classmethod
     def to_schema(cls):
