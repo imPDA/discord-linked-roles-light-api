@@ -6,6 +6,9 @@ This repository is a very lightweight python client for creating custom Discord 
 
 ![image](https://github.com/imPDA/discord-linked-roles-light-api/assets/43822452/9c72a493-9697-4b44-9b91-ceaf824d95ed)
 
+### Installation
+`pip install git+https://github.com/imPDA/discord-linked-roles-light-api.git@*VERSION*`
+
 ## ⚠️⚠️⚠️ In-development state ⚠️⚠️⚠️
 
 - Everyting can be changed during development
